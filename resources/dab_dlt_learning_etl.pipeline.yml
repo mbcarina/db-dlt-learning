@@ -1,0 +1,16 @@
+resources:
+  pipelines:
+    dab_dlt_learning_etl:
+      name: dab_dlt_learning_etl
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      root_path: ../src/dab_dlt_learning
+
+      libraries:
+        - file:
+            path: ../src/dab_dlt_learning/dlt_pipeline.py
+
+      environment:
+        dependencies:
+          - --editable ${workspace.file_path}

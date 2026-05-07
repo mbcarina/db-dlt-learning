@@ -1,0 +1,14 @@
+# Orchestration job for the DLT pipeline.
+
+resources:
+  jobs:
+    dlt_orchestration_job:
+      name: dlt_orchestration_job
+      # trigger:
+      #   periodic:
+      #     interval: 36500
+      #     unit: DAYS
+      tasks:
+        - task_key: run_dlt_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.dab_dlt_learning_etl.id}
