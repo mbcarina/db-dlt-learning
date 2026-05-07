@@ -29,3 +29,8 @@ build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 120
+
+[tool.pytest.ini_options]
+markers = [
+  "integration: tests requiring Databricks compute/auth"
+]
