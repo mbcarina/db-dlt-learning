@@ -94,6 +94,13 @@ jobs:
           azure_client_secret = ${ARM_CLIENT_SECRET}
           EOF
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      
       - name: Deploy bundle (prod)
         run: databricks bundle deploy -t prod
