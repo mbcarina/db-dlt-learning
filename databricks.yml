@@ -52,3 +52,17 @@ targets:
         level: CAN_MANAGE
       - group_name: users
         level: CAN_MANAGE
+  
+  ci:
+    mode: production
+    workspace:
+      host: https://adb-7405615954925655.15.azuredatabricks.net
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      service_principal_name: ce9ee4c5-8ff5-4059-9a5c-6e2f5a65bd41
+    variables:
+      catalog: db_workspace_formation
+      schema: ci
+    permissions:
+      - service_principal_name: ce9ee4c5-8ff5-4059-9a5c-6e2f5a65bd41
+        level: CAN_MANAGE

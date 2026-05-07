@@ -54,8 +54,8 @@ jobs:
           EOF
 
 
-      - name: Validate bundle (dev)
-        run: databricks bundle validate -t dev
+      - name: Validate bundle (ci)
+        run: databricks bundle validate -t ci
 
       - name: Validate bundle (prod)
         run: databricks bundle validate -t prod
