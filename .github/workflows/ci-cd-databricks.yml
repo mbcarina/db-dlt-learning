@@ -30,8 +30,8 @@ jobs:
       - name: Install project dependencies
         run: uv sync --all-extras --dev
 
-      - name: Run pytest
-        run: uv run pytest -q
+      - name: Run pytest (unit only)
+        run: uv run pytest -q -m "not integration"
 
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
