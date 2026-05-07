@@ -36,13 +36,7 @@ jobs:
 
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
-
-      - name: Validate bundle (dev)
-        run: databricks bundle validate -t dev
-
-      - name: Validate bundle (prod)
-        run: databricks bundle validate -t prod
-
+      
       - name: Create Databricks CLI profiles
         run: |
           cat > ~/.databrickscfg <<EOF
@@ -59,6 +53,14 @@ jobs:
           azure_client_secret = ${ARM_CLIENT_SECRET}
           EOF
 
+
+      - name: Validate bundle (dev)
+        run: databricks bundle validate -t dev
+
+      - name: Validate bundle (prod)
+        run: databricks bundle validate -t prod
+
+      
   deploy-prod:
     if: github.ref == 'refs/heads/main'
     needs: ci-checks
@@ -75,6 +77,23 @@ jobs:
 
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
+      
+      - name: Create Databricks CLI profiles
+        run: |
+          cat > ~/.databrickscfg <<EOF
+          [DEFAULT]
+          host = ${DATABRICKS_HOST}
+          azure_tenant_id = ${ARM_TENANT_ID}
+          azure_client_id = ${ARM_CLIENT_ID}
+          azure_client_secret = ${ARM_CLIENT_SECRET}
+
+          [prod-sp]
+          host = ${DATABRICKS_HOST}
+          azure_tenant_id = ${ARM_TENANT_ID}
+          azure_client_id = ${ARM_CLIENT_ID}
+          azure_client_secret = ${ARM_CLIENT_SECRET}
+          EOF
+
 
       - name: Deploy bundle (prod)
         run: databricks bundle deploy -t prod
