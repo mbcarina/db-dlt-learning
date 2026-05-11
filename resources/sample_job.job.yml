@@ -6,7 +6,7 @@ resources:
       name: dlt_orchestration_job
       # trigger:
       #   periodic:
-      #     interval: 36500
+      #     interval: 30
       #     unit: DAYS
       tasks:
         - task_key: run_dlt_pipeline

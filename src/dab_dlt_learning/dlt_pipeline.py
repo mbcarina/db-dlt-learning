@@ -54,7 +54,7 @@ dlt.apply_changes(
     sequence_by=F.col("event_ts"),
     apply_as_deletes=F.expr("op = 'D'"),
     except_column_list=["op", "_source_file", "_ingest_ts"],
-    stored_as_scd_type=1,
+    stored_as_scd_type=2,
 )
 
 
